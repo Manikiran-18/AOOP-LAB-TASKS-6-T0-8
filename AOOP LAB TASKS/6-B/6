@@ -1,0 +1,75 @@
+import java.util.*;
+
+// Generic interface to find minimum and maximum values
+interface MinMax<T extends Comparable<T>> {
+    T findMin(T[] array);
+    T findMax(T[] array);
+}
+
+// Generic class implementing MinMax interface
+class GenericMinMax<T extends Comparable<T>> implements MinMax<T> {
+
+    // Method to find minimum value in an array
+    @Override
+    public T findMin(T[] array) {
+        if (array == null || array.length == 0) {
+            throw new IllegalArgumentException("Array cannot be null or empty");
+        }
+        T min = array[0];
+        for (T element : array) {
+            if (element.compareTo(min) < 0) {
+                min = element;
+            }
+        }
+        return min;
+    }
+
+    // Method to find maximum value in an array
+    @Override
+    public T findMax(T[] array) {
+        if (array == null || array.length == 0) {
+            throw new IllegalArgumentException("Array cannot be null or empty");
+        }
+        T max = array[0];
+        for (T element : array) {
+            if (element.compareTo(max) > 0) {
+                max = element;
+            }
+        }
+        return max;
+    }
+}
+
+// Main class to test the implementation
+public class GenericMinMaxDemo {
+
+    public static void main(String[] args) {
+        // Integer array
+        Integer[] intArray = {5, 2, 9, 1, 7};
+        GenericMinMax<Integer> intMinMax = new GenericMinMax<>();
+        System.out.println("Integer Array: " + Arrays.toString(intArray));
+        System.out.println("Minimum Integer: " + intMinMax.findMin(intArray));
+        System.out.println("Maximum Integer: " + intMinMax.findMax(intArray));
+
+        // Float array
+        Float[] floatArray = {2.5f, 1.2f, 7.9f, 3.4f, 0.9f};
+        GenericMinMax<Float> floatMinMax = new GenericMinMax<>();
+        System.out.println("\nFloat Array: " + Arrays.toString(floatArray));
+        System.out.println("Minimum Float: " + floatMinMax.findMin(floatArray));
+        System.out.println("Maximum Float: " + floatMinMax.findMax(floatArray));
+
+        // String array
+        String[] stringArray = {"apple", "orange", "banana", "pear", "grape"};
+        GenericMinMax<String> stringMinMax = new GenericMinMax<>();
+        System.out.println("\nString Array: " + Arrays.toString(stringArray));
+        System.out.println("Minimum String: " + stringMinMax.findMin(stringArray));
+        System.out.println("Maximum String: " + stringMinMax.findMax(stringArray));
+
+        // Character array
+        Character[] charArray = {'a', 'x', 'm', 'z', 'b'};
+        GenericMinMax<Character> charMinMax = new GenericMinMax<>();
+        System.out.println("\nCharacter Array: " + Arrays.toString(charArray));
+        System.out.println("Minimum Character: " + charMinMax.findMin(charArray));
+        System.out.println("Maximum Character: " + charMinMax.findMax(charArray));
+    }
+}
